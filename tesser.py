@@ -89,7 +89,6 @@ def get_contours(img):
 
     #get the rectangular contour
     biggest = biggest_contour(contours)
-    cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
     if biggest.size == 0:
         raise ValueError("Empty rectangular contours")
       cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
