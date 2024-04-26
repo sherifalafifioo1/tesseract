@@ -91,7 +91,7 @@ def get_contours(img):
     biggest = biggest_contour(contours)
     if biggest.size == 0:
         raise ValueError("Empty rectangular contours")
-      cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
+     # cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
 
     # Pixel values in the original image
     points = biggest.reshape(4, 2)
