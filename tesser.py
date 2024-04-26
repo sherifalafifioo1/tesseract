@@ -48,7 +48,7 @@ def biggest_contour(contours):
     max_area = 0
     for i in contours:
         area = cv2.contourArea(i)
-        if area > 40:
+        if area > 25:
             peri = cv2.arcLength(i, True)
             approx = cv2.approxPolyDP(i, 0.015 * peri, True)
             if area > max_area and len(approx) == 4:
@@ -89,9 +89,10 @@ def get_contours(img):
 
     #get the rectangular contour
     biggest = biggest_contour(contours)
+    cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
     if biggest.size == 0:
         raise ValueError("Empty rectangular contours")
-    #cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
+      cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
 
     # Pixel values in the original image
     points = biggest.reshape(4, 2)
