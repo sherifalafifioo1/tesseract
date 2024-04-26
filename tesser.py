@@ -44,7 +44,7 @@ def biggest_contour(contours):
         numpy.ndarray: a array of 4 points [[[x1,y1],[x2,y2],[x3,y3],[x4,y4]]] 
         that make the rectangular outer shape of the ID
     """
-     print("first")
+    
     biggest = np.array([])
     max_area = 0
     for i in contours:
@@ -92,8 +92,8 @@ def get_contours(img):
     #get the rectangular contour
     biggest = biggest_contour(contours)
     if biggest.size == 0:
-        print("empty")
-        raise ValueError("Empty rectangular contours")
+        
+        raise ValueError("empty rectangular contours")
      # cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
 
     # Pixel values in the original image
