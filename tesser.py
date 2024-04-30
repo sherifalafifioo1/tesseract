@@ -224,10 +224,10 @@ def OCR_pipline(img):
     Returns:
         int: ID number
     """
-
-    contoured_pic = get_contours(img)  
-    ID_pic = crop_and_threshold(contoured_pic)
-    string_OCR = OCR_pytesseract(ID_pic).replace(" ","").replace("\n","").rstrip()
+    ID_pic = crop_and_threshold(img)
+    contoured_pic = get_contours(ID_pic)  
+   
+    string_OCR = OCR_pytesseract(contoured_pic).replace(" ","").replace("\n","").rstrip()
     National_ID = int(string_OCR)
 
     if len(string_OCR) != 14:
