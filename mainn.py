@@ -28,7 +28,7 @@ def predict_image():
         image2_file = request.files['image2']
         image2_data = np.frombuffer(image2_file.read(), np.uint8)
         image2_array = cv2.imdecode(image2_data, cv2.IMREAD_COLOR)
-        print("good")
+       
         # Process images
         id=OCR_pipline(image1_array)
         # Return response
