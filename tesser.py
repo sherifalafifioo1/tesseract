@@ -13,15 +13,11 @@ import cv2
 import numpy as np
 import pytesseract
 from tensorflow import keras
+#pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'  # need to be changed to the server path
 
 #img = cv2.imread("D:\Reham\DATA\Graduation_project\OCR\data\wrap.jpg") # need to be replaced get_img function
 
-#TODO: get_img function */
-#TODO : Error Handleing -> opencv  */
-#TODO: if not 14 num -> raise Exceptions (take another img) */ 
-#TODO: imporve docstring  */
-#TODO: divide functions */
-#TODO: deepface functions 
+#TODO: solve empty rectangular contour problem
 
 def get_img_from_path(image_path):
 
@@ -44,13 +40,11 @@ def biggest_contour(contours):
         numpy.ndarray: a array of 4 points [[[x1,y1],[x2,y2],[x3,y3],[x4,y4]]] 
         that make the rectangular outer shape of the ID
     """
-    
     biggest = np.array([])
     max_area = 0
     for i in contours:
         area = cv2.contourArea(i)
         if area > 80:
-            print("inside") 
             peri = cv2.arcLength(i, True)
             approx = cv2.approxPolyDP(i, 0.015 * peri, True)
             if area > max_area and len(approx) == 4:
@@ -73,7 +67,7 @@ def get_contours(img):
     Returns:
         MatLike: the ID image after operations(contours,warp perspective,resizing to 600*400)
     """
-    img = rotate_img(img,90)
+    #img = rotate_img(img,90)
     img_original = img.copy()
 
     # Image modification
@@ -92,9 +86,8 @@ def get_contours(img):
     #get the rectangular contour
     biggest = biggest_contour(contours)
     if biggest.size == 0:
-        
-        raise ValueError("empty rectangular contours")
-     # cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
+        raise ValueError("Empty rectangular contours")
+    #cv2.drawContours(img, [biggest], -1, (0, 255, 0), 3)
 
     # Pixel values in the original image
     points = biggest.reshape(4, 2)
@@ -245,7 +238,11 @@ def OCR_pipline(img):
 #Second part: deepface library
 
 
+def match_user_id_pic(ID_path,pic_path):
+    obj = DeepFace.verify(ID_pic,user_pic
+            , model_name = 'Facenet', detector_backend = 'opencv')
+    return(obj['verified'])
+#-----------------------------------------------
 
 
-# In[ ]:
 
