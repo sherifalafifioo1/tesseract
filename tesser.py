@@ -237,11 +237,6 @@ def OCR_pipline(img):
 #-------------------------------------------------
 #Second part: deepface library
 
-
-def match_user_id_pic(ID_path,pic_path):
-    obj = DeepFace.verify(ID_pic,user_pic
-            , model_name = 'Facenet', detector_backend = 'opencv')
-    return(obj['verified'])
 #-----------------------------------------------
 
 
